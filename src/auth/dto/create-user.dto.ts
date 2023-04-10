@@ -21,6 +21,6 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  @MinLength(3)
+  @MinLength(1)
   fullName: string;
 }

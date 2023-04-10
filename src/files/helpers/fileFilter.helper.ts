@@ -1,22 +1,19 @@
+/* eslint-disable prettier/prettier */
 export const fileFilter = (
   req: Express.Request,
   file: Express.Multer.File,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  cb: Function,
+   // eslint-disable-next-line @typescript-eslint/ban-types
+  callback: Function,
 ) => {
-  /* if (file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
-        cb(null, true);
-    } else {
-        cb(new Error('Only image files are allowed!'), false);
-    } */
-  if (!file) return cb(new Error('No file provided'), false);
+  // console.log({ file })
+  if (!file) return callback(new Error('File is empty'), false);
 
-  const fileExtension = file.mimetype.split('/')[1];
-  const validateExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+  const fileExptension = file.mimetype.split('/')[1];
+  const validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
-  if (!validateExtensions.includes(fileExtension)) {
-    return cb(null, false);
+  if (validExtensions.includes(fileExptension)) {
+    return callback(null, true);
   }
 
-  return cb(null, true);
+  callback(null, false);
 };
